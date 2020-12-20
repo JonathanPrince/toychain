@@ -1,9 +1,37 @@
-const ToyChain = require('./chain')
+const ToyChain = require('./components/chain')
 const bc = new ToyChain()
 
-console.log('Genesis Block:', bc.getBlocks())
+bc.addTransaction({
+  from: 'A',
+  to: 'B',
+  value: 1
+})
+bc.addTransaction({
+  from: 'B',
+  to: 'C',
+  value: 1
+})
+bc.addTransaction({
+  from: 'C',
+  to: 'A',
+  value: 1
+})
+bc.addTransaction({
+  from: 'A',
+  to: 'B',
+  value: 1
+})
+bc.addTransaction({
+  from: 'B',
+  to: 'C',
+  value: 1
+})
+bc.addTransaction({
+  from: 'C',
+  to: 'A',
+  value: 1
+})
+bc.processTransactions()
 
-bc.addBlock('Second')
-bc.addBlock('Third')
-
-console.log(bc.getBlocks())
+const blocks = bc.getBlocks()
+console.log('Blocks: ', JSON.stringify(blocks, null, 2))
